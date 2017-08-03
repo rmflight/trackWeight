@@ -22,3 +22,27 @@ generate_dates <- function(start_date, end_date = start_date + 31, fasting = "we
   out_dates$weight <- NA
 }
 
+#' read data
+#'
+#' reads the data from the existing sheet
+#'
+#' @importFrom RCurl getURL
+#' @export
+#' @return data.frame
+read_sheet_data <- function(){
+  sheet_url <- scan(".gs_url", what = character())
+  sheet_csv <- getURL(sheet_url, .opts = list(ssl.verifypeer = FALSE))
+  sheet_data <- read.table(textConnection(sheet_csv), sep = ",", header = TRUE, stringsAsFactors = FALSE)
+  sheet_data
+}
+
+#' plot weight
+#'
+#' @export
+#' @import cowplot
+#' @import ggplot2
+#' @return plot
+plot_weight <- function(weight_data){
+  theme_set(theme_cowplot())
+  ggplot(weight_data, aes(x = date, y = weight, color = status)) + geom_line(color = "black", aes(group = 1)) + geom_point() + ylim(c(200, 270)) + theme(axis.text.x = element_text(angle = 90))
+}
