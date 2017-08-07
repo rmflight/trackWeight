@@ -20,5 +20,6 @@ after_success:
   - git config user.name "rmflight-travis"
   - git config user.email "travis"
   - git add README.md
+  - git add *.png
   - git commit -m 'added data point'
   - git push $FULL_REPO master
