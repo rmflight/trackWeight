@@ -3,7 +3,6 @@
 export(generate_dates)
 export(plot_weight)
 export(read_sheet_data)
-import(cowplot)
 import(ggplot2)
 import(lubridate)
 importFrom(RCurl,getURL)
