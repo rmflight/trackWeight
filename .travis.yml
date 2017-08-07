@@ -11,7 +11,7 @@ env:
   - secure: "dHknlaJtXultVqPvFRce3BdBa6gxgFNvaqN1k9rd0PAVSThOhKxPjQ9IYiINgYujtTCJXWFPKyyG76OoTlWfRsbV+XDieWu9TqQk96yTc8wi4p93RffsYJypg7qhy8lGc2rDqwge0f48v6IB0g6pIsHjWz6pq7nW+OBSUFvBGV4="
 
 install:
-  - R -e 'install.packages("devtools", "roxygen2")'
+  - R -e 'install.packages(c("devtools", "roxygen2"))'
   - R -e 'devtools::install_deps(dep = T)'
   - R -e 'devtools::document()'
   - R -e 'devtools::install()'
