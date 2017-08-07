@@ -3,9 +3,9 @@
 #' creates a data.frame that can be easily imported into a google sheet for
 #' tracking weight over a date range.
 #'
-#' @param date_start the start date
-#' @param date_end the end date
-#' @param fasting_on which days are fasting days?
+#' @param start_date the start date
+#' @param end_date the end date
+#' @param fasting which days are fasting days?
 #'
 #' @import lubridate
 #' @return data.frame
@@ -48,6 +48,6 @@ read_sheet_data <- function(){
 #' @import ggplot2
 #' @return plot
 plot_weight <- function(weight_data){
-  theme_set(theme_cowplot())
+  suppressWarnings(cowplot::theme_set(theme_cowplot()))
   ggplot(weight_data, aes_(x = "date", y = "weight", color = "status")) + geom_line(color = "black", aes(group = 1)) + geom_point() + ylim(c(200, 270)) + theme(axis.text.x = element_text(angle = 90))
 }
