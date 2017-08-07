@@ -39,6 +39,10 @@ read_sheet_data <- function(){
 
 #' plot weight
 #'
+#' generates a nice plot of weight over time to help keep me motivated
+#'
+#' @param weight_data data.frame containing "date", "weight", "status"
+#'
 #' @export
 #' @import cowplot
 #' @import ggplot2
