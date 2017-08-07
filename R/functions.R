@@ -27,6 +27,7 @@ generate_dates <- function(start_date, end_date = start_date + 31, fasting = "we
 #' reads the data from the existing sheet
 #'
 #' @importFrom RCurl getURL
+#' @importFrom utils read.table
 #' @export
 #' @return data.frame
 read_sheet_data <- function(){
@@ -44,5 +45,5 @@ read_sheet_data <- function(){
 #' @return plot
 plot_weight <- function(weight_data){
   theme_set(theme_cowplot())
-  ggplot(weight_data, aes(x = date, y = weight, color = status)) + geom_line(color = "black", aes(group = 1)) + geom_point() + ylim(c(200, 270)) + theme(axis.text.x = element_text(angle = 90))
+  ggplot(weight_data, aes_(x = "date", y = "weight", color = "status")) + geom_line(color = "black", aes(group = 1)) + geom_point() + ylim(c(200, 270)) + theme(axis.text.x = element_text(angle = 90))
 }

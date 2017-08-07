@@ -11,4 +11,5 @@ RoxygenNote: 6.0.1
 Imports: lubridate,
   ggplot2,
   cowplot,
-  RCurl
+  RCurl,
+  utils

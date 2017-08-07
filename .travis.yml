@@ -13,6 +13,7 @@ env:
 install:
   - R -e 'install.packages("devtools")'
   - R -e 'devtools::install_deps(dep = T)'
+  - R -e 'devtools::document()'
   - R -e 'devtools::install()'
 
 after_success:
