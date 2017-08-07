@@ -48,5 +48,6 @@ read_sheet_data <- function(){
 #' @return plot
 plot_weight <- function(weight_data){
   suppressWarnings(theme_set(cowplot::theme_cowplot()))
+  weight_data <- weight_data[!(is.na(weight_data$weight)), ]
   ggplot(weight_data, aes_string(x = "date", y = "weight", color = "status")) + geom_line(color = "black", aes(group = 1)) + geom_point() + ylim(c(200, max(weight_data$weight))) + theme(axis.text.x = element_text(angle = 90))
 }
