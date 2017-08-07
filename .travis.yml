@@ -1,17 +1,14 @@
-# R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
-
 language: r
 r:
   - release
 sudo: false
 cache: packages
-
 env:
   global:
-  - secure: "dHknlaJtXultVqPvFRce3BdBa6gxgFNvaqN1k9rd0PAVSThOhKxPjQ9IYiINgYujtTCJXWFPKyyG76OoTlWfRsbV+XDieWu9TqQk96yTc8wi4p93RffsYJypg7qhy8lGc2rDqwge0f48v6IB0g6pIsHjWz6pq7nW+OBSUFvBGV4="
+  - secure: kasvJOxSM9ylvkYwSko1skvh0iMQlvkilONIdrXvOTkQc7YJw1ggLRCINiA8PeQ/YDEoo45rsDa5F/wk9wacBLxcmrgGCUV0C3W38jhWkj+rf2KfeaC2leue66LlPU9/d4StcAM+CZhMqZIQCBktDny+Mqh0wyw7N2pfniEJzo4PlgKjndoHktfXp3IRhPQvM6vD2yW25UscNW2g644n1uuUZvsgOjAnEEeTL+CLYsykOikw2Q2saLWlXekaSM9EvaXieP1Zi5s9hTKvZnXWwI9OnXulNQh0R3h74YDqVHE8aa8aTqnCq9PiLdTQ8DqPU8sCWqSm128U2mJBD0JU2zuj4Y1n8YEaWsa7PTNCORGD5xODWjAv4OX/snayETiWeRDv4QM8oZ3pq540BJPYBuqyX3mcKqiL0WC9UBx7JN/IpLaUqty7ZwWmOgD1gmqv7SH8rRsEVCg9klVsnQuWJ1eoBy03L/cl4lR+BXyb1Yie7qtoW4UlaLnLWBKOseI7gV9C6aVfO3oKRefxC/sL5fL3tK0f4mJOXE7fZgPYI9yT17ZrScDnwru25xp2wJ9664q+taGhbxc6l0PwAiL/DUAiLmyHiUes4iEWzSmw4pen+wFd9leV5s1d4vcxqxDu5Eba84wn63byBufTN+1/wiLAzH3g8aneexvmY+WuLR8=
 
 install:
-  - R -e 'install.packages(c("devtools", "roxygen2"))'
+  - R -e 'install.packages(c("devtools", "roxygen2", "rmarkdown"))'
   - R -e 'devtools::install_deps(dep = T)'
   - R -e 'devtools::document()'
   - R -e 'devtools::install()'
