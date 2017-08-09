@@ -45,9 +45,14 @@ read_sheet_data <- function(){
 #'
 #' @export
 #' @import ggplot2
+#' @importFrom dplyr lead
 #' @return plot
 plot_weight <- function(weight_data){
   suppressWarnings(theme_set(cowplot::theme_cowplot()))
   weight_data <- weight_data[!(is.na(weight_data$weight)), ]
-  ggplot(weight_data, aes_string(x = "date", y = "weight", color = "status")) + geom_line(color = "black", aes(group = 1)) + geom_point() + ylim(c(200, max(weight_data$weight))) + theme(axis.text.x = element_text(angle = 90))
+  weight_lead <- weight_data$weight - dplyr::lag(weight_data$weight)
+  weight_lead[is.na(weight_lead)] <- 0
+  weight_data$dir <- "down"
+  weight_data[weight_lead > 0, "dir"] <- "up"
+  ggplot(weight_data, aes_string(x = "date", y = "weight", color = "status", fill = "status", shape = "dir")) + geom_line(color = "black", aes(group = 1)) + geom_point(size = 4) + ylim(c(200, max(weight_data$weight))) + theme(axis.text.x = element_text(angle = 90)) + scale_shape_manual(values = c("up" = 24, "down" = 25))
 }
