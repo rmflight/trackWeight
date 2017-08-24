@@ -37,7 +37,7 @@ If you want to use this for yourself, you will want to look at [this guide](trac
 
 ```{r track_it, message=FALSE, warning=FALSE}
 library(trackWeight)
-weight_data <- read_sheet_data()
+weight_data <- read_sheet_data(".gs_url")
 plot_weight(weight_data)
 ```
 
