@@ -42,17 +42,18 @@ read_sheet_data <- function(){
 #' generates a nice plot of weight over time to help keep me motivated
 #'
 #' @param weight_data data.frame containing "date", "weight", "status"
+#' @param ylim the limits in the y-direction (defaults to minimum and maximum of data)
 #'
 #' @export
 #' @import ggplot2
 #' @importFrom dplyr lead
 #' @return plot
-plot_weight <- function(weight_data){
+plot_weight <- function(weight_data, ylim = range(weight_data$weight, na.rm = TRUE)){
   suppressWarnings(theme_set(cowplot::theme_cowplot()))
   weight_data <- weight_data[!(is.na(weight_data$weight)), ]
   weight_lead <- weight_data$weight - dplyr::lag(weight_data$weight)
   weight_lead[is.na(weight_lead)] <- 0
   weight_data$dir <- "down"
   weight_data[weight_lead > 0, "dir"] <- "up"
-  ggplot(weight_data, aes_string(x = "date", y = "weight", color = "status", fill = "status", shape = "dir")) + geom_line(color = "black", aes(group = 1)) + geom_point(size = 4) + ylim(c(260, max(weight_data$weight))) + theme(axis.text.x = element_text(angle = 90)) + scale_shape_manual(values = c("up" = 24, "down" = 25))
+  ggplot(weight_data, aes_string(x = "date", y = "weight", color = "status", fill = "status", shape = "dir")) + geom_line(color = "black", aes(group = 1)) + geom_point(size = 4) + ylim(ylim) + theme(axis.text.x = element_text(angle = 90)) + scale_shape_manual(values = c("up" = 24, "down" = 25))
 }
