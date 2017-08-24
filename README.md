@@ -14,12 +14,14 @@ You can install trackWeight from github with:
 devtools::install_github("rmflight/trackWeight")
 ```
 
+If you want to use this for yourself, you will want to look at [this guide](track_your_own.md)
+
 Track My Weight
 ---------------
 
 ``` r
 library(trackWeight)
-weight_data <- read_sheet_data()
+weight_data <- read_sheet_data(".gs_url")
 plot_weight(weight_data)
 ```
 
