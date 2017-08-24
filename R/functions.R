@@ -7,6 +7,9 @@
 #' @param end_date the end date
 #' @param fasting which days are fasting days?
 #'
+#' @examples
+#' generate_dates(lubridate::today())
+#'
 #' @import lubridate
 #' @return data.frame
 #' @export
@@ -20,18 +23,40 @@ generate_dates <- function(start_date, end_date = start_date + 31, fasting = "we
   out_dates$status <- "fasting"
   out_dates[wday(out_dates$date) %in% feasting_days, "status"] <- "feasting"
   out_dates$weight <- NA
+  out_dates
 }
 
 #' read data
 #'
 #' reads the data from the existing sheet
 #'
+#' @param file a file to read a url from
+#' @param url the actual url
+#'
+#' @examples
+#' # from a file
+#' url_file <- system.file("extdata", "gs_url", package = "trackWeight")
+#' read_sheet_data(file = url_file)
+#'
+#' # from the url directly
+#' read_sheet_data(url = "https://docs.google.com/spreadsheets/d/1f7X_60NeRRfXxhc3KGO62NdIz2wwfWIrY_vpOMy9hPY/export?format=csv")
+#'
 #' @importFrom RCurl getURL
 #' @importFrom utils read.table
 #' @export
 #' @return data.frame
-read_sheet_data <- function(){
-  sheet_url <- scan(".gs_url", what = character())
+read_sheet_data <- function(file = NULL, url = NULL){
+  if (is.null(file) && is.null(url)) {
+    stop("Must provide a file or URL directly!")
+  }
+  if (!is.null(file)) {
+    if (file.exists(file)) {
+      sheet_url <- scan(file, what = character())
+    }
+  } else if (!is.null(url)) {
+    sheet_url <- url
+  }
+
   sheet_csv <- getURL(sheet_url, .opts = list(ssl.verifypeer = FALSE))
   sheet_data <- read.table(textConnection(sheet_csv), sep = ",", header = TRUE, stringsAsFactors = FALSE)
   sheet_data
