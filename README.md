@@ -22,6 +22,7 @@ Track My Weight
 ``` r
 library(trackWeight)
 weight_data <- read_sheet_data(".gs_url")
+weight_data$date <- as.POSIXlt(weight_data$date, format = "%Y-%m-%d")
 plot_weight(weight_data)
 ```
 
