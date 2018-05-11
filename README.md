@@ -2,7 +2,12 @@
 trackWeight
 ===========
 
-The goal of trackWeight is to help me keep track of my weight fluctuations over time as I pursue weight loss via intermittent fasting. The package has a function to create a range of date values and put `fasting` or `not fasting` depending on the day to be added to a google sheet, and then another function that reads in the filled out google sheet, and generates a figure that is below.
+The goal of trackWeight is to help me keep track of my weight
+fluctuations over time as I pursue weight loss via intermittent fasting.
+The package has a function to create a range of date values and put
+`fasting` or `not fasting` depending on the day to be added to a google
+sheet, and then another function that reads in the filled out google
+sheet, and generates a figure that is below.
 
 Installation
 ------------
@@ -14,7 +19,8 @@ You can install trackWeight from github with:
 devtools::install_github("rmflight/trackWeight")
 ```
 
-If you want to use this for yourself, you will want to look at [this guide](track_your_own.md)
+If you want to use this for yourself, you will want to look at [this
+guide](track_your_own.md)
 
 Track My Weight
 ---------------
